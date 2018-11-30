@@ -3,6 +3,7 @@ package project4.gui;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 
@@ -34,7 +35,10 @@ public class Menu extends JMenu implements ActionListener
 	@Override
 	public void actionPerformed(ActionEvent e) 
 	{
-		
+		if(e.getActionCommand().equals("file"))
+		{
+			JFrame fileChooser = new FileChooser();
+		}
 	}
 
 }
