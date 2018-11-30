@@ -10,12 +10,12 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.filechooser.FileFilter;
 
-public class FileChooser extends JFrame implements ActionListener
+public class FileChooserFrame extends JFrame implements ActionListener
 {
 
 	JFileChooser fileChooser;
 	File fileChosen;
-	public FileChooser()
+	public FileChooserFrame()
 	{
 		//Sets title and size
 		super("Open");
@@ -31,12 +31,13 @@ public class FileChooser extends JFrame implements ActionListener
 		fileChooser = new JFileChooser(entryFile);
 
 		
-		FileFilter filter = new FileChooser.Filter();
+		FileFilter filter = new FileChooserFrame.Filter();
 		fileChooser.setFileFilter(filter);
 		
 		
 		fileChooser.addActionListener(this);
 		add(fileChooser);
+		
 	}
 	
 	@Override
@@ -45,8 +46,9 @@ public class FileChooser extends JFrame implements ActionListener
 		if(e.getSource().equals(fileChooser.getComponent(0)));
 		{
 			setVisible(false);
-			
+			fileChosen = fileChooser.getSelectedFile();
 		}
+		setVisible(false);
 	}
 	
 	public class Filter extends FileFilter
@@ -56,7 +58,7 @@ public class FileChooser extends JFrame implements ActionListener
 		public boolean accept(File f) 
 		{
 			String name = f.getName();
-			return name.substring( name.length() - 3, name.length() ).equals("mdf");
+			return name.substring( name.length() - 3).equals("mdf");
 
 		}
 

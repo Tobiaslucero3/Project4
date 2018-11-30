@@ -37,7 +37,7 @@ public class Menu extends JMenu implements ActionListener
 	{
 		if(e.getActionCommand().equals("file"))
 		{
-			JFrame fileChooser = new FileChooser();
+			JFrame fileChooser = new FileChooserFrame();
 		}
 	}
 
