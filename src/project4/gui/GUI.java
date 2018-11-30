@@ -13,15 +13,22 @@ public class GUI extends JFrame
 		super(title);
 		setSize(900, 700);
 		
-		//Enables visibility and sets default close operation
+		//Sets default close operation
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setVisible(true);
 		
 		JMenu menu = new Menu();
 		JMenuBar menuBar = new JMenuBar();
 		menuBar.add(menu);
 		setJMenuBar(menuBar);
 		
+		//Enables visibility
+		setVisible(true);
+		
+	}
+	
+	public static void main(String args[])
+	{
+		GUI gui = new GUI("Mesonet");
 		
 	}
 }
