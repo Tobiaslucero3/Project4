@@ -62,8 +62,66 @@ public class GUI extends JFrame implements ActionListener
 		parameterPanel = new ParameterPanel();
 		parameterPanel.setSize(77,403);
 		parameterPanel.setLocation(2,27);
-		add(parameterPanel);
-	  }
+		add(parameterPanel);		//Creating the statistics panel
+		statisticsPanel = new StatisticsPanel();
+		statisticsPanel.setSize(105,402);
+		statisticsPanel.setLocation(80,27);
+		add(statisticsPanel);
+		
+		//Creating the output panel
+		outputPanel = new OutputPanel();
+		outputPanel.setLocation(190,28);
+		outputPanel.setSize(709,395);
+		add(outputPanel);
+	
+		//Creating the calculate button
+		button = new JButton("Calculate");
+		button.setActionCommand("calculate");
+		button.addActionListener(this);
+		button.setLocation(362,442);
+		button.setSize(90,20);
+		add(button);
+		
+		//Creating the exit button
+		button = new JButton("Exit");
+		button.setActionCommand("exit");
+		button.addActionListener(this);
+		button.setSize(62, 20);
+		button.setLocation(471,442);
+		add(button);
+	}
+	
+	
+
+	@Override
+	public void actionPerformed(ActionEvent e) 
+	{
+		
+		if(e.getActionCommand().equals("calculate"))
+		{
+			try 
+			{
+				for(String x: parameterPanel.getSelected())
+				{
+					if(!x.equals(""))
+					{
+						outputPanel.showStatistics(menu.getMapData().getStatistics(statisticsPanel.getStatType(), x));
+					}
+					
+				}
+			}
+			catch(NullPointerException exception)
+			{
+				JOptionPane.showMessageDialog(null, "Please select a file first!", "Error", JOptionPane.ERROR_MESSAGE);
+			}
+		}
+		if(e.getActionCommand().equals("exit"))
+		{
+			setVisible(false);
+		}
+		
+	}
+	
 		
 	public static void main(String args[])
 	{
