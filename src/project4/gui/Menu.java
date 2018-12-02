@@ -54,7 +54,10 @@ public class Menu extends JMenu implements ActionListener
 		return fileChooser.getMapData();
 	}
 	
-
+	public File getFile()
+	{
+		return file;
+	}
 
 
 }
