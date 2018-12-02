@@ -10,22 +10,23 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.filechooser.FileFilter;
 
+import project4.mapdata.MapData;
+
 public class FileChooserFrame extends JFrame implements ActionListener
 {
 
 	JFileChooser fileChooser;
 	File fileChosen;
+	MapData mapData;
 	public FileChooserFrame()
 	{
 		//Sets title and size
 		super("Open");
-		setSize(900, 700);
+		setSize(500, 400);
 		
 		//Sets default close operation
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		//Enables visibility
-		setVisible(true);
 		
 		File entryFile = new File("C:\\Users\\18322\\eclipse-workspace\\project4\\data");
 		fileChooser = new JFileChooser(entryFile);
@@ -43,12 +44,16 @@ public class FileChooserFrame extends JFrame implements ActionListener
 	@Override
 	public void actionPerformed(ActionEvent e) 
 	{
-		if(e.getSource().equals(fileChooser.getComponent(0)));
-		{
 			setVisible(false);
 			fileChosen = fileChooser.getSelectedFile();
-		}
-		setVisible(false);
+			String name = fileChosen.getName();
+			mapData = new MapData(Integer.parseInt(name.substring(0, 4)), Integer.parseInt(name.substring(4, 6)), 
+					Integer.parseInt(name.substring(6, 8)), Integer.parseInt(name.substring(8, 10)), Integer.parseInt(name.substring(10, 12)), "data");
+	}
+	
+	public File getFile()
+	{
+		return fileChosen;
 	}
 	
 	public class Filter extends FileFilter
@@ -68,6 +73,12 @@ public class FileChooserFrame extends JFrame implements ActionListener
 			return "Files that end with .mdf";
 		}
 		
+	}
+	
+	public MapData getMapData()
+	{
+		mapData.parseFile();
+		return mapData;
 	}
 
 }
